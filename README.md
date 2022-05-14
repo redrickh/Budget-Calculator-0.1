@@ -1,4 +1,7 @@
 # Budget-Calculator-0.1
 A simple budget calculator written in Python
 
-![budgetcalc](https://user-images.githubusercontent.com/104272075/168449984-eee08351-02c2-4c31-a33c-93bb207bbac1.JPG)
+
+![budget](https://user-images.githubusercontent.com/104272075/168450174-beff588f-b39c-446f-9a1e-38071bf653fb.JPG)
+
+You can download the executable file from here:
