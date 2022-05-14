@@ -36,7 +36,7 @@ title_cb["state"] = "readonly"
 title_cb.current(0)
 title_cb.pack(fill=tk.X, padx=5, pady=5)
 
-label = ttk.Label(text="Enter an ammount:")
+label = ttk.Label(text="Enter an amount:")
 label.pack(fill=tk.X, padx=5, pady=5)
 textbox = Text(root, height=1)
 textbox.pack(fill=tk.X, padx=5, pady=5)
