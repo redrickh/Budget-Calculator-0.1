@@ -4,11 +4,11 @@
 <h3>Main Features:</h3>
 
 - Track your spending by month
-- 
+ 
 - You can add costum budget types. Like food, bills etc...
-- 
+ 
 - You can track your spending with monthly statistic chart
-- 
+ 
 - simple, easy to understand interface
 
 
