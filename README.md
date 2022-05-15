@@ -5,7 +5,7 @@
 
 - Track your spending by month
  
-- You can add costum budget types. Like food, bills etc...
+- Add your own costum budget types. Like food, bills etc...
  
 - You can track your spending with monthly statistic chart
  
