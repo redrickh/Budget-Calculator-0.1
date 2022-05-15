@@ -6,3 +6,5 @@
 
 <h2>You can download the executable file from here:</h2>
 https://github.com/redrickh/Budget-Calculator-0.1/releases/
+
+[![Stargazers repo roster for @redrickh/Budget-Calculator-0.1](https://reporoster.com/stars/redrickh/Budget-Calculator-0.1)](https://github.com/redrickh/Budget-Calculator-0.1/stargazers)
