@@ -18,7 +18,7 @@ root.geometry('500x500')
 root.resizable(False, False)
 root.title('Budget Calculator 0.1')
 
-label = ttk.Label(text="Please select a month:")
+label = ttk.Label(text="Please, select a month:")
 label.pack(fill=tk.X, padx=5, pady=5)
 selected_month = tk.StringVar()
 month_cb = ttk.Combobox(root, textvariable=selected_month)
@@ -27,7 +27,7 @@ month_cb['state'] = 'readonly'
 month_cb.current(0)
 month_cb.pack(fill=tk.X, padx=5, pady=5)
 
-label = ttk.Label(text="Please select a type:")
+label = ttk.Label(text="Please, select a type:")
 label.pack(fill=tk.X, padx=5, pady=5)
 selected_title = tk.StringVar()
 title_cb = ttk.Combobox(root, textvariable=selected_title)
@@ -80,21 +80,24 @@ year_cb.pack(fill=tk.X, padx=5, pady=5)
 buttonOpen = ttk.Button(root, text="Open my excel file")
 buttonOpen.pack(fill=tk.X, padx=5, pady=5)
 
+save_folder = os.getcwd() + "/income.xlsx"
+print(save_folder)
+
 
 class Load_Months:
 
     @classmethod
     def buildexcel(cls):
-        if os.path.isfile("income.xlsx"):
+        if os.path.isfile(save_folder):
             print("Income.xlsx File exists")
 
         else:
-            writer = pd.ExcelWriter('income.xlsx', engine='openpyxl')
+            writer = pd.ExcelWriter(save_folder, engine='openpyxl')
             months = month_cb["values"]
-            df = pd.DataFrame(months, columns=["Months"])
+            df = pd.DataFrame(list(months))
             df.to_excel(writer, index=False, sheet_name=str(selected_year.get()))
             months1 = title_cb["values"]
-            df1 = pd.DataFrame(months1, columns=["Months"])
+            df1 = pd.DataFrame(list(months1))
             df1 = df1.transpose()
             df1.to_excel(writer, sheet_name=str(selected_year.get()), startcol=1, index=False, header=False)
             writer.save()
@@ -112,12 +115,12 @@ class Load_Months:
         months = month_cb["values"]
         months1 = title_cb["values"]
 
-        workbook = openpyxl.load_workbook("income.xlsx")
-        writer = pd.ExcelWriter('income.xlsx', engine='openpyxl')
+        workbook = openpyxl.load_workbook(save_folder)
+        writer = pd.ExcelWriter(save_folder, engine='openpyxl')
         writer.book = workbook
         writer.sheets = dict((ws.title, ws) for ws in workbook.worksheets)
-        df = pd.DataFrame(months, columns=["Months"])
-        df1 = pd.DataFrame(months1, columns=["Months"])
+        df = pd.DataFrame(list(months))
+        df1 = pd.DataFrame(list(months1))
         df1 = df1.transpose()
         df.to_excel(writer, sheet_name=str(selected_year.get()), index=False)
         df1.to_excel(writer, sheet_name=str(selected_year.get()), startcol=1, index=False, header=False)
@@ -126,7 +129,6 @@ class Load_Months:
 
 
 class Main:
-
     Load_Months.build_nums()
     with open('nums.txt', 'r+') as file:
         for line in file:
@@ -164,8 +166,8 @@ class Main:
             addindex = list(curse)
             addindex_value = addindex[0]
 
-            workbook = openpyxl.load_workbook("income.xlsx")
-            writer = pd.ExcelWriter('income.xlsx', engine='openpyxl')
+            workbook = openpyxl.load_workbook(save_folder)
+            writer = pd.ExcelWriter(save_folder, engine='openpyxl')
             writer.book = workbook
 
             df = pd.DataFrame([np.nan])
@@ -196,7 +198,7 @@ class Main:
                 df = pd.DataFrame([int(textbox.get("1.0", 'end-1c'))])
                 x = [month_name[m][:3] for m in range(1, 13)]
                 y = title_cb["values"].index(selected_title.get())
-                z = pd.read_excel("income.xlsx")
+                z = pd.read_excel(save_folder)
                 sum_two_value = z.iloc[x.index(selected_month.get(), 0), y + 1]
 
                 if np.isnan(sum_two_value):
@@ -204,8 +206,8 @@ class Main:
                 else:
                     df = df + sum_two_value
 
-                workbook = openpyxl.load_workbook("income.xlsx")
-                writer = pd.ExcelWriter('income.xlsx', engine='openpyxl')
+                workbook = openpyxl.load_workbook(save_folder)
+                writer = pd.ExcelWriter(save_folder, engine='openpyxl')
                 writer.book = workbook
 
                 writer.sheets = dict((ws.title, ws) for ws in workbook.worksheets)
@@ -224,7 +226,7 @@ class Main:
     root.bind("<Return>", enter_press)
 
     def graph(self):
-        df = pd.read_excel("income.xlsx")
+        df = pd.read_excel(save_folder)
 
         df['sum'] = df[df.columns[1:]].sum(axis=1)
         # Thanks @Rabinzel for this solution
@@ -248,7 +250,7 @@ class Main:
 
     def open_my_excel(self):
         try:
-            os.system("income.xlsx")
+            os.system(save_folder)
         except Exception as e:
             print(e)
 
