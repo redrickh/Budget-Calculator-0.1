@@ -13,6 +13,8 @@
 
 
 ![budget](https://user-images.githubusercontent.com/104272075/168450174-beff588f-b39c-446f-9a1e-38071bf653fb.JPG)
+![chart](https://user-images.githubusercontent.com/104272075/168454117-139188be-9582-45e9-bbf3-5f0ebdc488cc.JPG)
+
 
 <h2>You can download the executable file from here:</h2>
 https://github.com/redrickh/Budget-Calculator-0.1/releases/
